@@ -27,6 +27,8 @@ app.MapGet("/api/items", async (ShoppingDb db) =>
 
 app.MapPost("/api/items", async (ShoppingDb db, ShoppingItem item) =>
 {
+    if (string.IsNullOrWhiteSpace(item.Name))
+        return Results.BadRequest(new { error = "Name is required" });
     item.Id = 0;
     item.IsChecked = false;
     item.CreatedAt = DateTime.UtcNow;
