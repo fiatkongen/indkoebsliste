@@ -1,0 +1,8 @@
+node_modules/
+dist/
+wwwroot/
+bin/
+obj/
+database.db
+*.db-shm
+*.db-wal
