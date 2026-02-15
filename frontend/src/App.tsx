@@ -24,7 +24,10 @@ export default function App() {
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) return;
-    await api.addItem(name.trim(), addedBy, quantity.trim() || undefined);
+    const names = name.split(',').map(n => n.trim()).filter(n => n.length > 0);
+    for (const n of names) {
+      await api.addItem(n, addedBy, names.length === 1 ? (quantity.trim() || undefined) : undefined);
+    }
     setName('');
     setQuantity('');
     refresh();
